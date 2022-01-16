@@ -1,6 +1,7 @@
 import React from "react";
 import AddTask from "./AddTask";
 import TaskList from "./TaskList";
+import uuid from "react-uuid";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -8,16 +9,17 @@ export default class App extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCheckbox = this.handleCheckbox.bind(this);
   }
 
   state = {
     tasks: [
-      "Take dog for walk",
-      "Buy milk",
-      "Call mom",
-      "Mow lawn",
-      "Pay rent",
-      "Get gas",
+      { id: uuid(), name: "Take dog for walk", isCompleted: false },
+      { id: uuid(), name: "Buy milk", isCompleted: false },
+      { id: uuid(), name: "Call mom", isCompleted: false },
+      { id: uuid(), name: "Mow lawn", isCompleted: false },
+      { id: uuid(), name: "Pay rent", isCompleted: false },
+      { id: uuid(), name: "Get gas", isCompleted: false },
     ],
     newTask: "",
   };
@@ -58,6 +60,14 @@ export default class App extends React.Component {
     this.setState({ newTask: event.target.value });
   }
 
+  handleCheckbox(id) {
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.map((task) =>
+        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
+      )
+    }));
+  }
+
   render() {
     return (
       <>
@@ -69,7 +79,7 @@ export default class App extends React.Component {
         />
 
         {/* TaskList */}
-        <TaskList tasks={this.state.tasks}/>
+        <TaskList tasks={this.state.tasks} onComplete={this.handleCheckbox} />
       </>
     );
   }
