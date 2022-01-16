@@ -1,4 +1,6 @@
 import React from "react";
+import AddTask from "./AddTask";
+import TaskList from "./TaskList";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -60,27 +62,14 @@ export default class App extends React.Component {
     return (
       <>
         <h1>Todo App</h1>
-        {/* add new task form */}
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="taskName"
-            placeholder="enter a task"
-            onChange={this.handleChange}
-            value={this.state.newTask}
-          />
-          <button>add task</button>
-        </form>
+        <AddTask
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          value={this.state.newTask}
+        />
 
         {/* TaskList */}
-        <ul>
-          {this.state.tasks.map((task) => (
-            <li key={task}>
-              <input type="checkbox" />
-              {task}
-            </li>
-          ))}
-        </ul>
+        <TaskList tasks={this.state.tasks}/>
       </>
     );
   }
