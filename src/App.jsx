@@ -8,7 +8,6 @@ export default class App extends React.Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
   }
 
@@ -20,22 +19,23 @@ export default class App extends React.Component {
       { id: uuid(), name: "Mow lawn", isCompleted: false },
       { id: uuid(), name: "Pay rent", isCompleted: false },
       { id: uuid(), name: "Get gas", isCompleted: false },
-    ],
-    newTask: "",
+    ]
   };
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit(name) {
+    const newTask = {
+      id: uuid(),
+       name,
+       isCompleted: false
+
+    }
 
     this.setState(
       // to update exist state, use prevState callback function
       // do NOT use this.state, because it can be out of sync
       (prevState) => ({
         // update the existing tasks with our new task
-        tasks: [this.state.newTask, ...prevState.tasks],
-
-        // clear the input, because it looks nice
-        newTask: "",
+        tasks: [newTask, ...prevState.tasks],
       })
 
       // arrow functions can be explicitly returned
@@ -73,9 +73,7 @@ export default class App extends React.Component {
       <>
         <h1>Todo App</h1>
         <AddTask
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          value={this.state.newTask}
+          onSubmit={this.handleSubmit}
         />
 
         {/* TaskList */}

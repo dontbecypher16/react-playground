@@ -1,14 +1,20 @@
 import React from "react";
 
-export default function AddTask({handleSubmit, handleChange, value}) {
+export default function AddTask({onSubmit}) {
+
+  function handleSubmit(event){
+    event.preventDefault();
+    const text = event.target.taskName.value;
+    onSubmit(text);
+    event.target.taskName.value = ''
+
+  }
     return (
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="taskName"
             placeholder="enter a task"
-            onChange={handleChange}
-            value={value}
           />
           <button>add task</button>
         </form>
