@@ -1,17 +1,24 @@
-import React from 'react'
+import React from "react";
+import DeleteTask from "./DeleteTask";
 
-export default function TaskList({tasks, onComplete}){
-
-    return(
-        <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <input type="checkbox" onChange={() => onComplete(task.id)}/>
+export default class TaskList extends React.Component {
+  render() {
+    return (
+      <ul>
+        {this.props.tasks.map((task) => (
+          <li className="list-item" key={task.id}>
+            <input
+              type="checkbox"
+              onChange={(event) =>
+                this.props.onChangeStatus(event.target.checked, task.id)
+              }
+            />
             {task.name}
+            {" "}
+            <DeleteTask />
           </li>
         ))}
-        </ul>
-
-    )
-
+      </ul>
+    );
+  }
 }

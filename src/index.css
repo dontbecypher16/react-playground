@@ -3,7 +3,8 @@ body {
   margin: 20px;
 }
 
-ol, ul {
+ol,
+ul {
   padding-left: 30px;
 }
 
@@ -47,4 +48,15 @@ ol, ul {
 
 .game-info {
   margin-left: 20px;
+}
+
+.list-item:hover .delete-button {
+  visibility: visible;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  visibility: hidden;
 }
