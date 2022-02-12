@@ -15,7 +15,7 @@ export default class TaskList extends React.Component {
             />
             {task.name}
             {" "}
-            <DeleteTask />
+            <DeleteTask onDelete={() => this.props.onDelete(task.id)}/>
           </li>
         ))}
       </ul>

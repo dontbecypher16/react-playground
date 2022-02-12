@@ -11,6 +11,7 @@ export default class App extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   state = {
@@ -61,17 +62,28 @@ export default class App extends React.Component {
     }));
   }
 
+  handleDelete(id){
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.filter((task) => 
+        task.id !== id
+
+      )
+
+    }))
+    //alert("testing delete")
+  }
+
   render() {
     return (
       <>
         <h1>Todo App</h1>
         <AddTask onSubmit={this.handleSubmit} />
-        {/* <DeleteTask /> */}
 
         
         <TaskList
           tasks={this.state.tasks}
           onChangeStatus={this.handleCheckbox}
+          onDelete={this.handleDelete}
         />
       </>
     );
