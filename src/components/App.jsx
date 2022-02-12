@@ -15,14 +15,31 @@ export default class App extends React.Component {
 
   state = {
     tasks: [
-      { id: uuid(), name: "Take dog for walk", isCompleted: false },
-      { id: uuid(), name: "Buy milk", isCompleted: false },
-      { id: uuid(), name: "Call mom", isCompleted: false },
-      { id: uuid(), name: "Mow lawn", isCompleted: false },
-      { id: uuid(), name: "Pay rent", isCompleted: false },
-      { id: uuid(), name: "Get gas", isCompleted: false },
+      // { id: uuid(), name: "Take dog for walk", isCompleted: false },
+      // { id: uuid(), name: "Buy milk", isCompleted: false },
+      // { id: uuid(), name: "Call mom", isCompleted: false },
+      // { id: uuid(), name: "Mow lawn", isCompleted: false },
+      // { id: uuid(), name: "Pay rent", isCompleted: false },
+      // { id: uuid(), name: "Get gas", isCompleted: false },
     ],
   };
+
+  async componentDidMount(){
+    try{
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+      const todos = await response.json()
+      this.setState({
+        tasks: todos.map(({id, title, completed}) => ({
+          id: id,
+          name: title,
+          isCompleted: completed
+        }))
+      })
+
+    } catch(error){
+      console.error(error)
+    }
+  }
 
   handleSubmit(name) {
     const newTask = {
@@ -51,7 +68,7 @@ export default class App extends React.Component {
         <AddTask onSubmit={this.handleSubmit} />
         {/* <DeleteTask /> */}
 
-        {/* TaskList */}
+        
         <TaskList
           tasks={this.state.tasks}
           onChangeStatus={this.handleCheckbox}
