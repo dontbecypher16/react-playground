@@ -1,5 +1,6 @@
 import React from "react";
 import DeleteTask from "./DeleteTask";
+import EditTask from "./EditTask";
 
 export default class TaskList extends React.Component {
   render() {
@@ -14,6 +15,8 @@ export default class TaskList extends React.Component {
               }
             />
             {task.name}
+            {" "}
+            <EditTask onEdit={() => this.props.onEdit(task.id)}/>
             {" "}
             <DeleteTask onDelete={() => this.props.onDelete(task.id)}/>
           </li>

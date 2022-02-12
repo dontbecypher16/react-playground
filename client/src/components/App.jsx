@@ -3,7 +3,6 @@ import uuid from "react-uuid";
 import "../index.css";
 import AddTask from "./AddTask";
 import TaskList from "./TaskList";
-import DeleteTask from "./DeleteTask";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,7 +10,8 @@ export default class App extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
-    this.handleDelete = this.handleDelete.bind(this)
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   state = {
@@ -69,8 +69,17 @@ export default class App extends React.Component {
 
       )
 
-    }))
-    //alert("testing delete")
+    }));
+    
+  }
+
+  handleEdit(id, title){
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.map((task) =>
+        task.id === id ? { ...task, title } : task
+      ),
+    }));
+
   }
 
   render() {
@@ -84,6 +93,7 @@ export default class App extends React.Component {
           tasks={this.state.tasks}
           onChangeStatus={this.handleCheckbox}
           onDelete={this.handleDelete}
+          onEdit={this.handleEdit}
         />
       </>
     );
