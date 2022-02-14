@@ -1,9 +1,9 @@
 import React from "react";
 import DeleteTask from "./DeleteTask";
 import EditTask from "./EditTask";
-
 export default class TaskList extends React.Component {
   render() {
+    
     return (
       <ul>
         {this.props.tasks.map((task) => (

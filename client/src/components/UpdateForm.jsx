@@ -1,13 +1,13 @@
 import React from "react"
 
 
-export default function UpdateForm() {
+export default function UpdateForm(onName) {
 
       return (
-          <form>
+          <form onName={() => this.props.onName()}>
             <input
               type="text"
-              title="taskName"
+              name="taskName"
               placeholder="enter task..."
             />
             <button>update task</button>

@@ -3,6 +3,7 @@ import uuid from "react-uuid";
 import "../index.css";
 import AddTask from "./AddTask";
 import TaskList from "./TaskList";
+import UpdateForm from "./UpdateForm"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -16,31 +17,31 @@ export default class App extends React.Component {
 
   state = {
     tasks: [
-      // { id: uuid(), name: "Take dog for walk", isCompleted: false },
-      // { id: uuid(), name: "Buy milk", isCompleted: false },
-      // { id: uuid(), name: "Call mom", isCompleted: false },
-      // { id: uuid(), name: "Mow lawn", isCompleted: false },
-      // { id: uuid(), name: "Pay rent", isCompleted: false },
-      // { id: uuid(), name: "Get gas", isCompleted: false },
+      { id: uuid(), name: "Take dog for walk", isCompleted: false },
+      { id: uuid(), name: "Buy milk", isCompleted: false },
+      { id: uuid(), name: "Call mom", isCompleted: false },
+      { id: uuid(), name: "Mow lawn", isCompleted: false },
+      { id: uuid(), name: "Pay rent", isCompleted: false },
+      { id: uuid(), name: "Get gas", isCompleted: false },
     ],
   };
 
-  async componentDidMount(){
-    try{
-      const response = await fetch('https://jsonplaceholder.typicode.com/todos')
-      const todos = await response.json()
-      this.setState({
-        tasks: todos.map(({id, title, completed}) => ({
-          id: id,
-          name: title,
-          isCompleted: completed
-        }))
-      })
+  // async componentDidMount(){
+  //   try{
+  //     const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+  //     const todos = await response.json()
+  //     this.setState({
+  //       tasks: todos.map(({id, title, completed}) => ({
+  //         id: id,
+  //         name: title,
+  //         isCompleted: completed
+  //       }))
+  //     })
 
-    } catch(error){
-      console.error(error)
-    }
-  }
+  //   } catch(error){
+  //     console.error(error)
+  //   }
+  // }
 
   handleSubmit(name) {
     const newTask = {
@@ -73,11 +74,11 @@ export default class App extends React.Component {
     
   }
 
-  handleEdit(id, title){
+  handleEdit(id){
     this.setState((prevState) => ({
       tasks: prevState.tasks.map((task) =>
-        task.id === id ? { ...task, title } : task
-      ),
+        task.id === id ? <UpdateForm onName={this.handleEdit(task)}/> : task
+      )
     }));
 
   }
