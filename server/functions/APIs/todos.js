@@ -1,4 +1,4 @@
-const { db } = require('../utils/admin');
+const { db } = require('../util/admin');
 
 exports.getAllTodos = (request, response) => {
 	db
@@ -51,6 +51,7 @@ exports.postOneTodo = (request, response) => {
 			console.error(err);
 		});
 };
+
 
 
 exports.deleteTodo = (request, response) => {
