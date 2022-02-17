@@ -1,10 +1,10 @@
 import React from "react"
 
 
-export default function UpdateForm(onName) {
+export default function UpdateForm({onUpdate}) {
 
       return (
-          <form onName={() => this.props.onName()}>
+          <form onSubmit={() => this.props.onUpdate()}>
             <input
               type="text"
               name="taskName"
