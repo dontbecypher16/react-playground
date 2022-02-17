@@ -1,6 +1,6 @@
 import React from "react";
 import IconButton from "./IconButton";
-import UpdateForm from "./UpdateForm";
+import InputForm from "./InputForm";
 export default class TaskList extends React.Component {
   state = {
     idToEdit: null,
@@ -18,7 +18,7 @@ export default class TaskList extends React.Component {
         {this.props.tasks.map((task) => (
           <li className="list-item" key={task.id}>
             {task.id === this.state.idToEdit ? (
-              <UpdateForm />
+              <InputForm onSubmit={() => {} } buttonText="update task" value={task.title}/>
             ) : (
               <>
                 <input

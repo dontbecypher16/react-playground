@@ -68,9 +68,6 @@ ul{
   text-align: center;
 }
 
-.list-item:hover .delete-button {
-  visibility: visible;
-}
 
 .icon-button {
   background-color: transparent;
@@ -79,7 +76,7 @@ ul{
   visibility: hidden;
 }
 
-.list-item:hover .edit-button {
+.list-item:hover .icon-button {
   visibility: visible;
 }
 

@@ -1,9 +1,8 @@
 import React from "react";
 import uuid from "react-uuid";
 import "../index.css";
-import AddTask from "./AddTask";
+import InputForm from "./InputForm";
 import TaskList from "./TaskList";
-import UpdateForm from "./UpdateForm"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -75,11 +74,11 @@ export default class App extends React.Component {
   }
 
   handleEdit(id){
-    this.setState((prevState) => ({
-      tasks: prevState.tasks.map((task) =>
-        task.id === id ? <UpdateForm onName={this.handleEdit(task)}/> : task
-      )
-    }));
+    // this.setState((prevState) => ({
+    //   tasks: prevState.tasks.map((task) =>
+    //     task.id === id ? <EditTask onName={this.handleEdit(task)}/> : task
+    //   )
+    // }));
 
   }
 
@@ -87,7 +86,9 @@ export default class App extends React.Component {
     return (
       <>
         <h1 className="center-all">Todo List</h1>
-        <AddTask onSubmit={this.handleSubmit} />
+        <div className="add task">
+        <InputForm onSubmit={this.handleSubmit} buttonText="add task" placeHolder="enter a task"/>
+        </div>
         <TaskList
           tasks={this.state.tasks}
           onChangeStatus={this.handleCheckbox}
