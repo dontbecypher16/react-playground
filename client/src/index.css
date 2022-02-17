@@ -50,6 +50,24 @@ ul {
   margin-left: 20px;
 }
 
+#root {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+}
+.center-all {
+  text-align: center;
+}
+
 .list-item:hover .delete-button {
   visibility: visible;
 }

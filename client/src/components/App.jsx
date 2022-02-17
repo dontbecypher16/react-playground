@@ -86,10 +86,8 @@ export default class App extends React.Component {
   render() {
     return (
       <>
-        <h1>Todo App</h1>
+        <h1 className="center-all">Todo List</h1>
         <AddTask onSubmit={this.handleSubmit} />
-
-        
         <TaskList
           tasks={this.state.tasks}
           onChangeStatus={this.handleCheckbox}

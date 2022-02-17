@@ -5,7 +5,7 @@ export default class TaskList extends React.Component {
   render() {
     
     return (
-      <ul>
+      <ul className="center-all">
         {this.props.tasks.map((task) => (
           <li className="list-item" key={task.id}>
             <input

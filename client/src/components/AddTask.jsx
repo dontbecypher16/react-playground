@@ -10,7 +10,7 @@ export default function AddTask({onSubmit}) {
 
   }
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="center-all" onSubmit={handleSubmit}>
           <input
             type="text"
             name="taskName"
