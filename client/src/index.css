@@ -72,7 +72,7 @@ ul{
   visibility: visible;
 }
 
-.delete-button {
+.icon-button {
   background-color: transparent;
   border: 0;
   padding: 0;
@@ -83,10 +83,7 @@ ul{
   visibility: visible;
 }
 
-.edit-button {
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  visibility: hidden;
+.add-task {
+  margin-bottom: 20px;
 }
 

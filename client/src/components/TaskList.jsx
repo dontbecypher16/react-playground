@@ -1,6 +1,5 @@
 import React from "react";
-import DeleteTask from "./DeleteTask";
-import EditTask from "./EditTask";
+import IconButton from "./IconButton";
 import UpdateForm from "./UpdateForm";
 export default class TaskList extends React.Component {
   state = {
@@ -29,8 +28,8 @@ export default class TaskList extends React.Component {
                   }
                 />
                 {task.title}{" "}
-                <EditTask onEdit={() => this.showUpdateForm(task.id)} />{" "}
-                <DeleteTask onDelete={() => this.props.onDelete(task.id)} />
+                <IconButton onClick={() => this.showUpdateForm(task.id)} icon="✍🏻" />{" "}
+                <IconButton onClick={() => this.props.onDelete(task.id)} icon="🗑️" />
               </>
             )}
           </li>
