@@ -12,13 +12,20 @@ export default class TaskList extends React.Component {
     });
   }
 
+  handleUpdate(id, title){
+    this.props.onEdit(id, title)
+    this.setState({
+      idToEdit: null,
+    });  
+  }
+
   render() {
     return (
       <ul className="center-all">
         {this.props.tasks.map((task) => (
           <li className="list-item" key={task.id}>
             {task.id === this.state.idToEdit ? (
-              <InputForm onSubmit={() => {} } buttonText="update task" value={task.title}/>
+              <InputForm onSubmit={(title) => this.handleUpdate(task.id, title)} buttonText="update task" value={task.title}/>
             ) : (
               <>
                 <input

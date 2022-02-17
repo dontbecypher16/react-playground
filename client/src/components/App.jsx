@@ -73,12 +73,12 @@ export default class App extends React.Component {
     
   }
 
-  handleEdit(id){
-    // this.setState((prevState) => ({
-    //   tasks: prevState.tasks.map((task) =>
-    //     task.id === id ? <EditTask onName={this.handleEdit(task)}/> : task
-    //   )
-    // }));
+  handleEdit(id, title){
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.map((task) =>
+        task.id === id ? {...task, title} : task
+      )
+    }));
 
   }
 
