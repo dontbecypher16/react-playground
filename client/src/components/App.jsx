@@ -1,6 +1,6 @@
 import React from "react";
-import uuid from "react-uuid";
 import "../index.css";
+import {createTodo, deleteTodo, getAllTodos, updateTodo} from "../api"
 import InputForm from "./InputForm";
 import TaskList from "./TaskList";
 
@@ -15,70 +15,82 @@ export default class App extends React.Component {
   }
 
   state = {
-    tasks: [
-      { id: uuid(), title: "Take dog for walk", isCompleted: false },
-      { id: uuid(), title: "Buy milk", isCompleted: false },
-      { id: uuid(), title: "Call mom", isCompleted: false },
-      { id: uuid(), title: "Mow lawn", isCompleted: false },
-      { id: uuid(), title: "Pay rent", isCompleted: false },
-      { id: uuid(), title: "Get gas", isCompleted: false },
-    ],
+    tasks: [],
   };
 
-  // async componentDidMount(){
-  //   try{
-  //     const response = await fetch('https://jsonplaceholder.typicode.com/todos')
-  //     const todos = await response.json()
-  //     this.setState({
-  //       tasks: todos.map(({id, title, completed}) => ({
-  //         id: id,
-  //         title: title,
-  //         isCompleted: completed
-  //       }))
-  //     })
+  async componentDidMount(){
+    try{
+      const tasks = await getAllTodos()
+      this.setState({
+        tasks: tasks.map(({id, title, completed}) => ({
+          id: id,
+          title: title,
+          isCompleted: completed
+        }))
+      })
 
-  //   } catch(error){
-  //     console.error(error)
-  //   }
-  // }
-
-  handleSubmit(title) {
-    const newTask = {
-      id: uuid(),
-      title,
-      isCompleted: false,
-    };
-
-    this.setState((prevState) => ({
-      tasks: [newTask, ...prevState.tasks],
-    }));
+    } catch(error){
+      console.error(error)
+    }
   }
 
-  handleCheckbox(isCompleted, id) {
-    this.setState((prevState) => ({
-      tasks: prevState.tasks.map((task) =>
-        task.id === id ? { ...task, isCompleted } : task
-      ),
-    }));
+  async handleSubmit(title) {
+    try{
+      const newTask = await createTodo({title})
+      this.setState((prevState) => ({
+        tasks: [newTask, ...prevState.tasks],
+      }));
+
+    }catch(e){
+      console.error(e)
+    }
   }
 
-  handleDelete(id){
-    this.setState((prevState) => ({
-      tasks: prevState.tasks.filter((task) => 
-        task.id !== id
+  async handleCheckbox(isCompleted, id) {
+    try{
+      await updateTodo({id, isCompleted})
+      this.setState((prevState) => ({
+        tasks: prevState.tasks.map((task) =>
+          task.id === id ? { ...task, isCompleted } : task
+        ),
+      }));
 
-      )
+    }catch(e){
+      console.log(e)
+    }
+  }
 
-    }));
+  async handleDelete(id){
+    try{
+      await deleteTodo(id)
+      this.setState((prevState) => ({
+        tasks: prevState.tasks.filter((task) => 
+          task.id !== id
+  
+        )
+  
+      }));
+
+    }catch(e){
+      console.log(e)
+    }
     
   }
 
-  handleEdit(id, title){
-    this.setState((prevState) => ({
-      tasks: prevState.tasks.map((task) =>
-        task.id === id ? {...task, title} : task
-      )
-    }));
+  async handleEdit(id, title){
+    console.log(id, title)
+    try{
+      await updateTodo({id, title})
+      this.setState((prevState) => ({
+        tasks: prevState.tasks.map((task) =>
+          task.id === id ? {...task, title} : task
+        )
+      }));
+
+    }catch(e){
+      console.error(e)
+
+    }
 
   }
 
@@ -86,8 +98,8 @@ export default class App extends React.Component {
     return (
       <>
         <h1 className="center-all">Todo List</h1>
-        <div className="add task">
-        <InputForm onSubmit={this.handleSubmit} buttonText="add task" placeHolder="enter a task"/>
+        <div className="add-task">
+          <InputForm onSubmit={this.handleSubmit} buttonText="add task" placeHolder="enter a task"/>
         </div>
         <TaskList
           tasks={this.state.tasks}

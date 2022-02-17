@@ -15,7 +15,7 @@ const {
 
 app.get('/todos', getAllTodos);
 app.post('/todo', postOneTodo);
-app.delete('/todos/:todoId', deleteTodo);
-app.put('/todos/:todoId', editTodo);
+app.delete('/todos/:id', deleteTodo);
+app.put('/todos/:id', editTodo);
 
 exports.api = functions.https.onRequest(app);

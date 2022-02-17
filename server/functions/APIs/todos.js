@@ -9,9 +9,9 @@ exports.getAllTodos = (request, response) => {
 			let todos = [];
 			data.forEach((doc) => {
 				todos.push({
-                    todoId: doc.id,
+                    id: doc.id,
                     title: doc.data().title,
-					body: doc.data().body,
+                    isCompleted: doc.data().isCompleted,
 					createdAt: doc.data().createdAt,
 				});
 			});
@@ -25,17 +25,13 @@ exports.getAllTodos = (request, response) => {
 
 
 exports.postOneTodo = (request, response) => {
-	if (request.body.body.trim() === '') {
-		return response.status(400).json({ body: 'Must not be empty' });
-    }
-    
     if(request.body.title.trim() === '') {
         return response.status(400).json({ title: 'Must not be empty' });
     }
     
     const newTodoItem = {
         title: request.body.title,
-        body: request.body.body,
+        isCompleted: false,
         createdAt: new Date().toISOString()
     }
     db
@@ -55,7 +51,7 @@ exports.postOneTodo = (request, response) => {
 
 
 exports.deleteTodo = (request, response) => {
-    const document = db.doc(`/todos/${request.params.todoId}`);
+    const document = db.doc(`/todos/${request.params.id}`);
     document
         .get()
         .then((doc) => {
@@ -75,10 +71,10 @@ exports.deleteTodo = (request, response) => {
 
 
 exports.editTodo = ( request, response ) => { 
-    if(request.body.todoId || request.body.createdAt){
+    if(request.body.id || request.body.createdAt){
         response.status(403).json({message: 'Not allowed to edit'});
     }
-    let document = db.collection('todos').doc(`${request.params.todoId}`);
+    let document = db.collection('todos').doc(`${request.params.id}`);
     document.update(request.body)
     .then(()=> {
         response.json({message: 'Updated successfully'});
