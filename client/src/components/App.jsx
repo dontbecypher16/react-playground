@@ -17,12 +17,12 @@ export default class App extends React.Component {
 
   state = {
     tasks: [
-      { id: uuid(), name: "Take dog for walk", isCompleted: false },
-      { id: uuid(), name: "Buy milk", isCompleted: false },
-      { id: uuid(), name: "Call mom", isCompleted: false },
-      { id: uuid(), name: "Mow lawn", isCompleted: false },
-      { id: uuid(), name: "Pay rent", isCompleted: false },
-      { id: uuid(), name: "Get gas", isCompleted: false },
+      { id: uuid(), title: "Take dog for walk", isCompleted: false },
+      { id: uuid(), title: "Buy milk", isCompleted: false },
+      { id: uuid(), title: "Call mom", isCompleted: false },
+      { id: uuid(), title: "Mow lawn", isCompleted: false },
+      { id: uuid(), title: "Pay rent", isCompleted: false },
+      { id: uuid(), title: "Get gas", isCompleted: false },
     ],
   };
 
@@ -33,7 +33,7 @@ export default class App extends React.Component {
   //     this.setState({
   //       tasks: todos.map(({id, title, completed}) => ({
   //         id: id,
-  //         name: title,
+  //         title: title,
   //         isCompleted: completed
   //       }))
   //     })
@@ -43,10 +43,10 @@ export default class App extends React.Component {
   //   }
   // }
 
-  handleSubmit(name) {
+  handleSubmit(title) {
     const newTask = {
       id: uuid(),
-      name,
+      title,
       isCompleted: false,
     };
 

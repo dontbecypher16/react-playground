@@ -14,7 +14,7 @@ export default class TaskList extends React.Component {
                 this.props.onChangeStatus(event.target.checked, task.id)
               }
             />
-            {task.name}
+            {task.title}
             {" "}
             <EditTask onEdit={() => this.props.onEdit(task.id)}/>
             {" "}
