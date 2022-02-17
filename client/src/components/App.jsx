@@ -22,11 +22,7 @@ export default class App extends React.Component {
     try{
       const tasks = await getAllTodos()
       this.setState({
-        tasks: tasks.map(({id, title, completed}) => ({
-          id: id,
-          title: title,
-          isCompleted: completed
-        }))
+        tasks
       })
 
     } catch(error){

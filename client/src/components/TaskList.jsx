@@ -33,6 +33,7 @@ export default class TaskList extends React.Component {
                   onChange={(event) =>
                     this.props.onChangeStatus(event.target.checked, task.id)
                   }
+                defaultChecked={task.isCompleted}
                 />
                 {task.title}{" "}
                 <IconButton onClick={() => this.showUpdateForm(task.id)} icon="✍🏻" />{" "}
