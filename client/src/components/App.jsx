@@ -92,7 +92,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="page">
         <h1 className="center-all">Todo List</h1>
         <div className="add-task">
           <InputForm onSubmit={this.handleSubmit} buttonText="add task" placeHolder="enter a task"/>
@@ -103,7 +103,7 @@ export default class App extends React.Component {
           onDelete={this.handleDelete}
           onEdit={this.handleEdit}
         />
-      </>
+      </div>
     );
   }
 }

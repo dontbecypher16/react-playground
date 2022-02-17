@@ -1,6 +1,8 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  background-color:darkslategrey;
+  color: white
 }
 
 ol,
@@ -66,6 +68,12 @@ ul{
 }
 .center-all {
   text-align: center;
+
+}
+
+.task-list{
+  margin: 0 auto;
+  max-width: 300px;
 }
 
 
@@ -79,8 +87,19 @@ ul{
 .list-item:hover .icon-button {
   visibility: visible;
 }
+.list-item{
+  font-weight: 500;
+  padding: 0 auto;
+}
 
 .add-task {
   margin-bottom: 20px;
+  
+}
+
+.page{
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: rgba(150,0,100, 0.5);
 }
 

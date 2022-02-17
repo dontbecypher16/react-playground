@@ -21,7 +21,7 @@ export default class TaskList extends React.Component {
 
   render() {
     return (
-      <ul className="center-all">
+      <ul className="task-list">
         {this.props.tasks.map((task) => (
           <li className="list-item" key={task.id}>
             {task.id === this.state.idToEdit ? (
