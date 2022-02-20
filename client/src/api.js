@@ -1,6 +1,6 @@
 const api = process.env.REACT_APP_API;
 
-export async function getAllTodos(success) {
+export async function getAllTodos() {
   const response = await fetch(`${api}/todos`, {
     headers: {
       Accept: "application/json",

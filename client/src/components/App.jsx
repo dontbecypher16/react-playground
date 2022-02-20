@@ -12,8 +12,9 @@ export default class App extends React.Component {
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
-  }
 
+  }
+  
   state = {
     tasks: [],
   };
@@ -22,7 +23,7 @@ export default class App extends React.Component {
     try{
       const tasks = await getAllTodos()
       this.setState({
-        tasks
+        tasks: tasks
       })
 
     } catch(error){
