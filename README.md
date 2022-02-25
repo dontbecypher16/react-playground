@@ -1,3 +1,3 @@
 # Todo-list
-## Crud app
+## Crud app using React, Express and Firebase
 
